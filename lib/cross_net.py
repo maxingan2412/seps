@@ -172,8 +172,7 @@ class CrossSparseAggrNet_v2(nn.Module):
         long_sims= []
         score_mask_all = []
         score_mask_long_all = []
-        # print('img_embs.shape:', img_embs.shape, 'cap_embs.shape:', cap_embs.shape, 'cap_lens:', cap_lens.shape, 'long_cap_embs.shape:', long_cap_embs.shape if long_cap_embs is not None else None, 'long_cap_lens:', long_cap_lens.shape)
-        # 分别对cap_emb和long_cap_emb做cross-attention和sparse selection
+
         for i in range(len(cap_lens)):
             n_word = cap_lens[i]
             cap_i = cap_embs[i, :n_word, :]

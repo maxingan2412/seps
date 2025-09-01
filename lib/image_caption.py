@@ -64,16 +64,16 @@ class RawImageDataset(data.Dataset):
                 self.captions.append(line.strip())
 
         self.long_captions = []
-            # 打开文件，逐行读取
+        
         if self.split == 'train' or self.split == 'test' or (self.split == 'testall' and opt.dataset == 'coco'):
             with open(os.path.join(loc, f'{opt.dataset}_{self.split}.jsonl'), "r", encoding="utf-8") as f:
                 for line in f:
                     try:
-                        # 解析每一行为 JSON 对象
                         json_obj = json.loads(line.strip())
-                        self.long_captions.append(json_obj['text'])  # 添加到列表
+                        self.long_captions.append(json_obj['text']) 
                     except json.JSONDecodeError as e:
                         print(f"Error parsing line: {e}")
+
         if self.split == 'test' or (self.split == 'testall' and opt.dataset == 'coco'):
             self.long_captions = [cap for cap in self.long_captions for _ in range(5)] 
 

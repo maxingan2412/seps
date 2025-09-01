@@ -329,8 +329,6 @@ def shard_attn_scores(model, img_embs, cap_embs, cap_lens, long_cap_embs, long_l
         for i in range(n_im_shard):    
             
             im_start, im_end = shard_size * i, min(shard_size * (i + 1), len(img_embs))
-            # print('im_start, im_end:', im_start, im_end)
-            # print(len(img_embs), len(cap_embs), len(cap_lens), len(long_cap_embs), len(long_lengths))
 
             for j in range(n_cap_shard):
 
