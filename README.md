@@ -135,19 +135,19 @@ python eval.py --dataset coco --data_path data/ --gpu-id 1
 The following tables show the reproducing results of cross-modal retrieval on **MSCOCO** and **Flickr30K** datasets. 
 We provide the training logs, checkpoints, performances, and hyper-parameters.
 
-|Datasets| Visual encoders |I2T R@1|I2T R@5|T2I R@1|T2I R@5|Model checkpoint|
-|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Flickr30K |ViT-224 | 86.1 | 93.7  | 86.9 | 98.1 |[Link](https://drive.google.com/drive/folders/1muHqWyKgzyDQ4fqSo5QgRPtXLTJEVdbZ?usp=drive_link)|
-|Flickr30K |ViT-384 | 90.7 | 94.4  | 89.3 | 99.3 |[Link](https://drive.google.com/drive/folders/1iUVqFBj1odFvrAjxyF_QNgpw-DDf-Za_?usp=drive_link)|
-|Flickr30K |Swin-224 | 89.8 | 96.9 | 88.0 | 98.9 |[Link](https://drive.google.com/drive/folders/1YUZ10szYk5hnvzz8rfCAcV1ai1_bd3wH?usp=drive_link)|
-|Flickr30K |Swin-384 | 93.6 | 98.3 | 91.6 | 99.4 |[Link](https://drive.google.com/drive/folders/1_YDDBH2F_HnoBTQGTvogXlrEKaTIFq0G?usp=drive_link)|
-|MSCOCO-1K |ViT-224 | 89.0 | 94.8  | 88.5 | 99.3  |[Link](https://drive.google.com/drive/folders/1eRgjDuGYAdnqHB2l3EvVeJmfkS9GhmaV?usp=drive_link)|
-|MSCOCO-1K |ViT-384 | 90.9 | 96.1  | 91.0 | 99.5 |[Link](https://drive.google.com/drive/folders/1WuY6cyZBK7ImzFkni3YeLRN_2x7z-2E3?usp=drive_link)|
-|MSCOCO-1K |Swin-224 | 87.2 | 94.9 | 84.7 | 99.0 |[Link](https://drive.google.com/drive/folders/1lV6E9D-3IVZMY79acSRbVp66HQSs2gqC?usp=drive_link)|
-|MSCOCO-1K |Swin-384 | 89.5 | 96.5 | 87.1 | 99.2 |[Link](https://drive.google.com/drive/folders/1x-szyZmRFPHatwoUk9x-mQU5NWf7SVc3?usp=drive_link)|
-|MSCOCO-5K |ViT-224 | 73.9 | 85.2 | 73.5 | 94.5 |[Link](https://drive.google.com/drive/folders/1eRgjDuGYAdnqHB2l3EvVeJmfkS9GhmaV?usp=drive_link)|
-|MSCOCO-5K |ViT-384 | 77.8 | 88.7 | 78.5 | 96.3  |[Link](https://drive.google.com/drive/folders/1WuY6cyZBK7ImzFkni3YeLRN_2x7z-2E3?usp=drive_link)|
-|MSCOCO-5K |Swin-224 | 71.9 | 86.0  | 66.8 | 92.2 |[Link](https://drive.google.com/drive/folders/1lV6E9D-3IVZMY79acSRbVp66HQSs2gqC?usp=drive_link)|
-|MSCOCO-5K |Swin-384 | 74.7 | 88.4  | 70.3 | 93.8 |[Link](https://drive.google.com/drive/folders/1x-szyZmRFPHatwoUk9x-mQU5NWf7SVc3?usp=drive_link)|
+|Datasets| Visual encoders |I2T R@1|I2T R@5|T2I R@1|T2I R@5| rSum | Model checkpoint|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Flickr30K |ViT-224 | 86.1 | 93.7  | 86.9 | 98.1 | 560.9 |[Link](https://drive.google.com/drive/folders/1muHqWyKgzyDQ4fqSo5QgRPtXLTJEVdbZ?usp=drive_link)|
+|Flickr30K |ViT-384 | 90.7 | 94.4  | 89.3 | 99.3 | 571.5 |[Link](https://drive.google.com/drive/folders/1iUVqFBj1odFvrAjxyF_QNgpw-DDf-Za_?usp=drive_link)|
+|Flickr30K |Swin-224 | 89.8 | 96.9 | 88.0 | 98.9 | 572.0 |[Link](https://drive.google.com/drive/folders/1YUZ10szYk5hnvzz8rfCAcV1ai1_bd3wH?usp=drive_link)|
+|Flickr30K |Swin-384 | 93.6 | 98.3 | 91.6 | 99.4 | 581.9 |[Link](https://drive.google.com/drive/folders/1_YDDBH2F_HnoBTQGTvogXlrEKaTIFq0G?usp=drive_link)|
+|MSCOCO-1K |ViT-224 | 89.0 | 94.8  | 88.5 | 99.3  | 569.5 |[Link](https://drive.google.com/drive/folders/1eRgjDuGYAdnqHB2l3EvVeJmfkS9GhmaV?usp=drive_link)|
+|MSCOCO-1K |ViT-384 | 90.9 | 96.1  | 91.0 | 99.5 | 576.1 |[Link](https://drive.google.com/drive/folders/1WuY6cyZBK7ImzFkni3YeLRN_2x7z-2E3?usp=drive_link)|
+|MSCOCO-1K |Swin-224 | 87.2 | 94.9 | 84.7 | 99.0 | 563.9 |[Link](https://drive.google.com/drive/folders/1lV6E9D-3IVZMY79acSRbVp66HQSs2gqC?usp=drive_link)|
+|MSCOCO-1K |Swin-384 | 89.5 | 96.5 | 87.1 | 99.2 | 571.2 |[Link](https://drive.google.com/drive/folders/1x-szyZmRFPHatwoUk9x-mQU5NWf7SVc3?usp=drive_link)|
+|MSCOCO-5K |ViT-224 | 73.9 | 85.2 | 73.5 | 94.5 | 516.9 |[Link](https://drive.google.com/drive/folders/1eRgjDuGYAdnqHB2l3EvVeJmfkS9GhmaV?usp=drive_link)|
+|MSCOCO-5K |ViT-384 | 77.8 | 88.7 | 78.5 | 96.3  | 534.6 |[Link](https://drive.google.com/drive/folders/1WuY6cyZBK7ImzFkni3YeLRN_2x7z-2E3?usp=drive_link)|
+|MSCOCO-5K |Swin-224 | 71.9 | 86.0  | 66.8 | 92.2 | 506.1 |[Link](https://drive.google.com/drive/folders/1lV6E9D-3IVZMY79acSRbVp66HQSs2gqC?usp=drive_link)|
+|MSCOCO-5K |Swin-384 | 74.7 | 88.4  | 70.3 | 93.8 | 519.1 |[Link](https://drive.google.com/drive/folders/1x-szyZmRFPHatwoUk9x-mQU5NWf7SVc3?usp=drive_link)|
 
 
