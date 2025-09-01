@@ -8,7 +8,7 @@ Fine-grained cross-modal alignment seeks to establish precise local corresponden
 However, existing approaches are fundamentally constrained by patch redundancy and ambiguity, stemming from the inherent information density disparity between modalities.
 
 <div align=center>
-<img src="imgs/fig1-1.png" width="80%">
+<img src="imgs/architecture.pdf" width="100%">
 </div>
 
 In this paper we argue that richer semantic guidance is key and propose the Semantic-Enhanced Patch Slimming (SEPS) framework. Our framework aggregates both sparse and dense textual representations to identify semantically relevant patches, and employs top-k selection with mean value computation to emphasize critical patch-word correspondences.
@@ -16,7 +16,7 @@ In this paper we argue that richer semantic guidance is key and propose the Sema
 Extensive experiments on Flickr30K and MS-COCO datasets demonstrate that SEPS achieves state-of-the-art performance, outperforming existing methods by 23\%-86\% in rSum across various model backbones, with particularly significant improvements in text-to-image retrieval tasks.
 
 <div align=center>
-<img src="imgs/fig1-2.png" width="100%">
+<img src="imgs/motivation.pdf" width="100%">
 </div>
 
 
