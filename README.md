@@ -1,6 +1,6 @@
 # SEPS: Semantic-enhanced Patch Slimming Framework for fine-grained cross-modal alignment
 
-We referred to the implementations of [LAPS](https://github.com/CrossmodalGroup/LAPS) and [D2S-VSE](https://github.com/liuyyy111/d2s-vse) to build up the repository. 
+We referred to the implementations of [LAPS](https://github.com/CrossmodalGroup/LAPS) and [D2S-VSE](https://github.com/liuyyy111/d2s-vse) to build up the repository. Our paper is at [here](https://arxiv.org/abs/2511.01390).
 
 
 ## Introduction
