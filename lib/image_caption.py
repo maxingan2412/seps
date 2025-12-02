@@ -102,6 +102,7 @@ class RawImageDataset(data.Dataset):
         target = process_caption_bert(self.tokenizer, caption_tokens, self.train, size_augment=self.opt.size_augment)
        
         long_caption = self.long_captions[img_index]
+        # 稠密/MLLM caption 分支，提供更丰富的语义
         long_caption_tokens = self.tokenizer.basic_tokenizer.tokenize(long_caption)  
         long_target = process_caption_bert(self.tokenizer, long_caption_tokens, self.train, size_augment=self.opt.size_augment) 
 

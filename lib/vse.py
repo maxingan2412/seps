@@ -27,7 +27,7 @@ class VSEModel(nn.Module):
         # iteration
         self.Eiters = 0
 
-        # sparse + aggregation model
+        # 稀疏 + 聚合模块（Patch Slimming + 跨模态打分核心）
         self.cross_net = CrossSparseAggrNet_v2(opt)
 
     def freeze_backbone(self):
@@ -113,7 +113,7 @@ class VSEModel(nn.Module):
         improved_sims, score_mask_all = self.forward_sim(new_img_emb, new_cap_emb, lengths, new_long_cap_emb, long_lengths)
         # basic alignment loss
         align_loss = self.criterion(new_img_emb, new_cap_emb, img_ids, improved_sims) * warmup_alpha
-        # ratio_loss
+        # ratio_loss 约束保留 patch 的比例接近 sparse_ratio 超参
         ratio_loss = (score_mask_all.mean() - self.opt.sparse_ratio) ** 2
         loss = align_loss + self.opt.ratio_weight * ratio_loss
         return loss, None

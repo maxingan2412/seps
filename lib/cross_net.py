@@ -22,7 +22,7 @@ class TokenSparse(nn.Module):
         
         B_v, L_v, C = tokens.size()
 
-        # (B_v, L_v)
+        # (B_v, L_v) 图像自注意得分 + 文本引导得分，用于评估每个 patch 的显著性
         score = attention_x + attention_y
 
         num_keep_token = math.ceil(L_v * self.sparse_ratio)
@@ -39,7 +39,7 @@ class TokenSparse(nn.Module):
         # (B_v, L_v * token_ratio, C)
         select_tokens = torch.gather(tokens, dim=1, index=keep_policy.unsqueeze(-1).expand(-1, -1, C))
 
-        # fusion token
+        # 融合 token
         # (B_v, L_v *  (1 - token_ratio) )
         non_keep_policy = score_index[:, num_keep_token:]
 
@@ -51,7 +51,7 @@ class TokenSparse(nn.Module):
         # through softmax function, (B_v, L_v *  (1 - token_ratio) ) -> (B_v, L_v *  (1 - token_ratio), 1)
         non_keep_score = F.softmax(non_keep_score, dim=1).unsqueeze(-1)
 
-        # get fusion token (B_v, 1, C)
+        # 得到融合 token (B_v, 1, C)，汇总被丢弃的 patch 信息
         extra_token = torch.sum(non_tokens * non_keep_score, dim=1, keepdim=True) 
 
         return select_tokens, extra_token, score_mask
@@ -174,6 +174,7 @@ class CrossSparseAggrNet_v2(nn.Module):
         score_mask_long_all = []
 
         for i in range(len(cap_lens)):
+            # 稀疏/原始 caption 分支
             n_word = cap_lens[i]
             cap_i = cap_embs[i, :n_word, :]
             cap_i_expand = cap_embs_norm[i, :n_word, :].unsqueeze(0).repeat(B_v, 1, 1)
@@ -192,7 +193,7 @@ class CrossSparseAggrNet_v2(nn.Module):
             # aggregation
             aggr_tokens = self.aggr_net(select_tokens_cap)
 
-            # add fusion token
+            # 添加融合 token
             keep_spatial_tokens = torch.cat([aggr_tokens, extra_token_cap], dim=1)
 
             # add [cls] token
@@ -213,6 +214,7 @@ class CrossSparseAggrNet_v2(nn.Module):
             improve_sims.append(sim_one_text)
             score_mask_all.append(score_mask_cap)
         for i in range(len(long_cap_lens)):
+            # 稠密/MLLM caption 分支
             n_word = long_cap_lens[i]
             long_cap_i = long_cap_embs[i, :n_word, :]
             long_cap_i_expand = long_cap_embs_norm[i, :n_word, :].unsqueeze(0).repeat(B_v, 1, 1)
@@ -230,7 +232,7 @@ class CrossSparseAggrNet_v2(nn.Module):
             # aggregation
             aggr_tokens_long = self.aggr_net(select_tokens_long)
 
-            # add fusion token
+            # 添加融合 token
             keep_spatial_tokens = torch.cat([aggr_tokens_long, extra_token_long], dim=1)
 
             # add [cls] token
@@ -251,6 +253,7 @@ class CrossSparseAggrNet_v2(nn.Module):
             long_sims.append(sim_one_text)
             score_mask_long_all.append(score_mask_long)
         # (B_v, B_t)
+        # 融合稀疏 caption 相似度与稠密 caption 相似度
         improve_sims = torch.cat(improve_sims, dim=1) + torch.cat(long_sims, dim=1)
         score_mask_all = torch.stack(score_mask_all, dim=0) + torch.stack(score_mask_long_all, dim=0)
         

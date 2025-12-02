@@ -65,7 +65,7 @@ class VisionTransEncoder(nn.Module):
 
     def forward(self, images):
     
-        # (B, L_v, C_hidden)
+        # (B, L_v, C_hidden) ViT/Swin 输出的 patch token（若存在则包含 CLS）
         img_feats = self.visual_encoder(images).last_hidden_state 
 
         # the dimension transform
@@ -109,7 +109,7 @@ class EncoderText_BERT(nn.Module):
         bert_attention_mask = (x != 0).float()
 
 
-        # N = max_cap_lengths, D = 768
+        # N = max_cap_lengths, D = 768；输出逐 token 嵌入（不做池化）
         bert_emb = self.bert(input_ids=x, attention_mask=bert_attention_mask)[0]  # B x N x D
 
         # B x N x embed_size

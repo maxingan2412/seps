@@ -230,7 +230,7 @@ def mask_xattn_one_text(img_embs, cap_i_expand, img_mask=None, i2t=True, scan=Tr
     if scan:
         cap2img_sim = F.leaky_relu(cap2img_sim, negative_slope=0.1)
 
-    # t2i
+    # t2i：对每个词保留最强 patch（可选 mask 限制稀疏性）
     # (B_v, L_t)
     if img_mask is None:
         row_sim = cap2img_sim.max(dim=2)[0]
