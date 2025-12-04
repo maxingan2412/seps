@@ -1604,11 +1604,11 @@ if __name__ == "__main__":
     print(f"Using device: {device}")
 
     # 测试参数
-    B = 2
-    num_patches = 16
-    embed_size = 32
+    B = 6
+    num_patches = 196
+    embed_size = 512
     sparse_len = 5
-    dense_len = 8
+    dense_len = 20
 
     # 构造测试数据
     img = torch.randn(B, num_patches + 1, embed_size, device=device)
